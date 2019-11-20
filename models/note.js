@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 /*Build the schema full of objects and properties and saving it to a hard variable*/
-const headlineSchema = new Schema({
+const noteSchema = new Schema({
       _headlineID: {
           type: Schema.Types.ObjectID,
           ref: "headline",
