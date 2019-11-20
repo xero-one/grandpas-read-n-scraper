@@ -1,3 +1,5 @@
+/*Begin our constant defines and require calls==================================================*/
+
 /*Set constant variable for npm express*/
 const express = require("express");
 
@@ -8,15 +10,19 @@ const exphbs = require("express-handlebars")
 const mongoose = require('mongoose');
 
 /*Set constant to call the function npm express to initialize*/
+
 const app = express();
 
 /*Set constant variable to set npm express router protocal*/
 const router = express.Router();
 
-/*Set constant to db to equal deployed database or use default local mongoHeadlines database*/
-const db = proess.env.MONGODB_URI || "mongodb://localhost/articleHeadlines";
+/*Set a constant variable for your port or app port*/
+const PORT = process.env.PORT || 52330;
 
-/*Call mongoose to connect to the server and run log command status */
+/*Set constant to db to equal deployed database or use default local mongoHeadlines database*/
+const db = proess.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+/*Call mongoose to connect to the server and run log command status*/
 mongoose.connect(db, function(err) {
     if (err) {
         console.log(err);
@@ -26,8 +32,17 @@ mongoose.connect(db, function(err) {
     }
 });
 
-/*Set a constant variable for your port or app port*/
-const PORT = process.env.PORT || 3306;
+/*Require our routes.js file to pass our router object containing our routes info*/
+require("./config/routes")(router);
+
+/*End of our constant defines and require calls=================================================*/
+
+
+
+
+
+
+/*Begin our calls to program our app from the varibales/constants we defined above==============*/
 
 /*Call the app to label the public folder as static*/
 app.use(express.static(__dirname + "/public"));
@@ -36,10 +51,6 @@ app.use(express.static(__dirname + "/public"));
 app.engine("handlebars", exphbs({
     defaultLayout: + "main"
   }));
-
-app.get('/', function (req, res) {
-    res.render('home');
-});
  
 /*Call the app to use router middleware for every request*/
 app.use(router);
@@ -51,3 +62,5 @@ app.set("view engine", "handlebars");
 app.listen(PORT, function() {
     console.log("The app is listening om port: " + PORT);
 });
+
+/*End our calls to program our app from the varibales/constants we defined above==============*/
