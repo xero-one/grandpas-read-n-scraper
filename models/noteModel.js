@@ -10,6 +10,7 @@ const noteSchema = new Schema({
           type: Schema.Types.ObjectID,
           ref: "headlineModel",
       },
+      
       date: String,
       noteText: String
 });

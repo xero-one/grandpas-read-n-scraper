@@ -17,7 +17,6 @@ module.exports = {
                 articles[i].data = createDate();
                 articles[i].saved = false;
             }
-            
             headlineJS.collection.insertMany(articles, {ordered: false}, function(err, docs) {
                 callback(err, docs);
             });
@@ -35,7 +34,7 @@ module.exports = {
             $set: query
         }, {}, callback);
     },
-        
+
     /*In case the user wants to delete an article this line allows that*/
     delete: (query, callback) => {
         headlineJS.remove(query, callback);
