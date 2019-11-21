@@ -5,26 +5,18 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 /*Build the schema full of objects and properties and saving it to a hard variable*/
-const headlineSchema = new Schema({
-      headline: {
-          type: String,
-          required: true,
-          unique: true
-      },
-      summary: {
-          type: String,
-          required: true
+const noteSchema = new Schema({
+      _headlineID: {
+          type: Schema.Types.ObjectID,
+          ref: "headlineModel",
       },
       date: String,
-      saved: {
-          type: Boolean,
-          default: false
-      }   
+      noteText: String
 });
 
 /*Save the built schema to a parent varaible that also ties the file its associated with and sets the "model" attribute to do work*/
-const headlineJS = mongoose.model("headline", headlineSchema);
+const noteJS = mongoose.model("noteModel", noteSchema);
 
 /*Export the parent variable we just set, so it is available throughout the app and so it can be used for routing*/
-module.exports = headlineJS;
+module.exports = noteJS;
   
