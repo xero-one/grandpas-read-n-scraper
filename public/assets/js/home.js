@@ -1,9 +1,10 @@
 $(document).ready(function () {
+    /*We reference the article div that houses all the articles where we will be rendering all articles inside of it*/
     const articleDiv = $("$article-div");
-    $(document).on("click", "#btn-save", controllerArticleSave);
-    $(document).on("click", "#scrape-new", controllerArticleScrape);
+    $(document).on("click", "#save-btn", controllerSaveArticle);
+    $(document).on("click", "#scrape-new", controllerScrapeArticle);
 
-    /*Lifestyle function that gets the page ready*/
+    /*Life style-function that initializes the page*/
     initPage();
 
     initPage = () => {
@@ -42,7 +43,7 @@ $(document).ready(function () {
                 "<div class='col s12'>",
                 "<h2 class='heading'>",
                 article.headline,
-                "<a class='btn btn-danger save'>",
+                "<a class='btn btn-danger' id='save-btn'>",
                 "Save Article",
                 "</a>",
                 "</h2>",
@@ -81,15 +82,15 @@ $(document).ready(function () {
         articleDiv.append(emptyAlert);
     }
 
-    controllerArticleSave = () => {
+    controllerSaveArticle = () => {
         /*We must create the function to allow the user to save the article based on the information we appened with the card. We then add the article id to be saved using the .data method*/
-        const articleSave = $(this).parents("#card").data();
-        articleSave.saved = true;
+        const saveArticle = $(this).parents("#card").data();
+        saveArticle.saved = true;
         /*We then use the ajax "PATCH" method to update the data with what is in the process of being saved*/
         $.ajax({
             method: "PATCH",
             url: "/api/headlines",
-            data: articleSave
+            data: saveArticle
         })
         .then(data = () => {
             /*If the functions runs and data is patched through mongoose will return a value of "1" which means true*/
@@ -100,7 +101,7 @@ $(document).ready(function () {
         });    
     }
 
-    controllerArticleScrape = () => {
+    controllerScrapeArticle = () => {
         /*We now define our article "scrape" controller/button and tell it what we want it to do */
         $.get("/api/fetch")
         /*Once the articles are scraped and we have evaluated our articles to those in our collection, we then tell the script to render the page followed by an alert that tells the user how many articles they have saved*/
