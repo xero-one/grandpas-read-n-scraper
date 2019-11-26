@@ -17,10 +17,10 @@ const app = express();
 const router = express.Router();
 
 /*Set a constant variable for your port or app port*/
-const PORT = process.env.PORT || 52330;
+const PORT = process.env.PORT || 3000;
 
 /*Set constant to db to equal deployed database or use default local mongoHeadlines database*/
-const db = proess.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+const db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 /*Call mongoose to connect to the server and run log command status*/
 mongoose.connect(db, function(err) {
