@@ -19,18 +19,18 @@ const router = express.Router();
 /*Set a constant variable for your port or app port*/
 const PORT = process.env.PORT || 3000;
 
-/*Set constant to db to equal deployed database or use default local mongoHeadlines database*/
-const db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+mongoose.Promise = Promise;
 
 /*Call mongoose to connect to the server and run log command status*/
-mongoose.connect(db, function(err) {
-    if (err) {
-        console.log(err);
-    }
-    else {
-        console.log("Mongoose has successfully connected!");
-    }
-});
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://grandpas-read-n-scraper:count123456@ds137498.mlab.com:37498/heroku_5dj9607r";
+mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, err => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            console.log("Mongoose has successfully connected!");
+        }
+    });
 
 /*Require our routes.js file to pass our router object containing our routes info*/
 require("./config/routes")(router);
