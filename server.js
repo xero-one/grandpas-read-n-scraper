@@ -6,11 +6,13 @@ const express = require("express");
 /*Set constant variable for npm express-handlebars*/
 const exphbs = require("express-handlebars")
 
+/*Set constant variable for body-parser*/
+var bodyParser = require("body-parser");
+
 /*Set constant variable for npm mongoose db*/
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 /*Set constant to call the function npm express to initialize*/
-
 const app = express();
 
 /*Set constant variable to set npm express router protocal*/
@@ -19,9 +21,11 @@ const router = express.Router();
 /*Set a constant variable for your port or app port*/
 const PORT = process.env.PORT || 3000;
 
+mongoose.Promise = Promise;
+
 /*Call mongoose to connect to the server and run log command status*/
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://grandpas-read-n-scraper:count123456@ds137498.mlab.com:37498/heroku_5dj9607r";
-mongoose.connect(MONGODB_URI, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, err => {
+const db = process.env.MONGODB_URI || "mongodb://grandpas-read-n-scraper:count123456@ds137498.mlab.com:37498/heroku_5dj9607r";
+mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, err => {
         if (err) {
             console.log(err);
         }
@@ -42,6 +46,11 @@ require("./config/routes")(router);
 
 /*Begin our calls to program our app from the varibales/constants we defined above==============*/
 
+/*Call the app to use bodyParser*/
+app.use(bodyParser.urlencoded({
+    extended: false
+  }));
+
 /*Call the app to label the public folder as static*/
 app.use(express.static(__dirname + "/public"));
 
@@ -55,6 +64,8 @@ app.use(router);
 
 /*Set the app to use han*/
 app.set("view engine", "handlebars");
+
+
 
 /*Set the app to listen to PORT set above*/
 app.listen(PORT, function() {

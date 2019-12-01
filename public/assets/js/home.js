@@ -1,13 +1,13 @@
 $(document).ready(function () {
     /*We reference the article div that houses all the articles where we will be rendering all articles inside of it*/
-    const articleDiv = $("$article-div");
+    const articleDiv = $("#article-div");
     $(document).on("click", "#save-btn", controllerSaveArticle);
     $(document).on("click", "#scrape-new", controllerScrapeArticle);
 
     /*Life style-function that initializes the page*/
     initPage();
 
-    initPage = () => {
+    function initPage() {
         /*Empty the article div once a new ajax function is calle to get new articles*/
         articleDiv.empty();
         $.get("/api/headlines?saved=false")
@@ -22,21 +22,21 @@ $(document).ready(function () {
             });
     }
 
-    renderArticles = (articles) => {
+    function renderArticles(articles) {
         /*We construct a function that appends the articles to the HTML containing our article info/data to our page
         Then empty the available data through a JSON array*/
         const articleCards = [];
 
         /*Once the data from the JSON is passed it then gets added o our page with some nice HTMl/CSS properties*/
         for (var i = 0; i < articles.length; i++) {
-            articleCards.push(createCard(articles[i]));
+            articleCards.push(constructCard(articles[i]));
         }
         /*In the last step we append what we have to our article div with our article cards*/
         articleDiv.append(articleCards);
 
     }
 
-    constructCard = (article) => {
+    function constructCard(article) {
         /*Here we write out our direct article card html code dynamically with JQUERY to formatt our data to append to our page with nice HTML/CSS*/
         const card =
             $(["<div class='row card' id='card'>",
@@ -61,7 +61,7 @@ $(document).ready(function () {
     }
      
 
-    renderEmpty = () => {
+    function renderEmpty() {
         /*Here we send the user a nice decorative html message explaining the data/articles is not available and give the user request options to go to saved articles or to scrape-new*/
         const emptyAlert = 
             $([
@@ -82,7 +82,7 @@ $(document).ready(function () {
         articleDiv.append(emptyAlert);
     }
 
-    controllerSaveArticle = () => {
+   function controllerSaveArticle() {
         /*We must create the function to allow the user to save the article based on the information we appened with the card. We then add the article id to be saved using the .data method*/
         const saveArticle = $(this).parents("#card").data();
         saveArticle.saved = true;
@@ -92,7 +92,7 @@ $(document).ready(function () {
             url: "/api/headlines",
             data: saveArticle
         })
-        .then(data = () => {
+        .then(function(data) {
             /*If the functions runs and data is patched through mongoose will return a value of "1" which means true*/
             if (data.ok) {
                 /*The initialize the page again using "initPage" to reload the articles*/
@@ -101,11 +101,11 @@ $(document).ready(function () {
         });    
     }
 
-    controllerScrapeArticle = () => {
+    function controllerScrapeArticle() {
         /*We now define our article "scrape" controller/button and tell it what we want it to do */
         $.get("/api/fetch")
         /*Once the articles are scraped and we have evaluated our articles to those in our collection, we then tell the script to render the page followed by an alert that tells the user how many articles they have saved*/
-            .then(data = () => {
+            .then(function(data) {
                 initPage();
                 bootbox.alert("<h3 class='text-center'>" + data.message + "</h3>");
             });

@@ -11,10 +11,10 @@ $(document).ready(function() {
     /*Life style-function that initializes the page*/
     initPage();
 
-    initPage = () => {
+    function initPage() {
         /*Empty the article div once a new ajax function is calle to get new articles*/
         articleDiv.empty();
-        $.get("/api/headlines?saved=true").then(data = () => {
+        $.get("/api/headlines?saved=true").then(function(data) {
             /*Set a boolean if statement that pulls headlines if there are any*/
             if (data && data.length) {
                 renderArticles(data);
@@ -25,20 +25,20 @@ $(document).ready(function() {
         });
     }
 
-    renderArticles = (articles) => {
+    function renderArticles(articles) {
         /*We construct a function that appends the articles to the HTML containing our article info/data to our page
         Then empty the available data through a JSON array*/
         const articleCards = [];
 
         /*Once the data from the JSON is passed it then gets added o our page with some nice HTMl/CSS properties*/
         for (var i = 0; i < articles.length; i++) {
-            articleCards.push(createCard(articles[i]));
+            articleCards.push(constructCard(articles[i]));
         }
         /*In the last step we append what we have to our article div with our article cards*/
         articleDiv.append(articleCards);
     }
 
-    constructCard = (article) => {
+    function constructCard(article) {
         /*Here we write out our direct article card html code dynamically with JQUERY to formatt our data to append to our page with nice HTML/CSS*/
         const card =
             $(["<div class='row card' id='card'>",
@@ -62,7 +62,7 @@ $(document).ready(function() {
         return card;
     }
 
-    renderEmpty = () => {
+    function renderEmpty() {
         /*Here we send the user a nice decorative html message explaining the data/articles is not available and give the user request options to go to saved articles or to scrape-new*/
         const emptyAlert =
             $([
@@ -83,10 +83,10 @@ $(document).ready(function() {
         articleDiv.append(emptyAlert);
     }
 
-    renderNotesQuery = (data) => {
+    function renderNotesQuery(data) {
         /*We set a function to rener the notes associated with our articles and render them to our notes model. We then arrange the notes into an array and set an constant for the script to svae each note*/
         const renderNotes = [];
-        const presentNote;
+        let presentNote;
         if (!data.notes.length) {
             /*We define what happens if no note is displayed, basically we will return a message to the user that no notes are displayed*/
             presentNote = [
@@ -112,28 +112,28 @@ $(document).ready(function() {
             }
         }
         /*We then append the renderNotes to the notes-div inside the note script*/
-        $("#article-div").append(renderNotes);
+        $("#note-div").append(renderNotes);
     }
 
-    controllerArticleDelete = () => {
+    function controllerArticleDelete() {
         /*We now define our article delete function for the saved page. Taking a closer look we must grab the relevant article id to delete from our article cards*/
         const deleteArticle = $(this).parents("#card").data();
         /*We then use the JQUERY ajax call to send the delete request to our models/databse*/
         $.ajax({
             method: "DELETE",
             url: "/api/headlines/" + deleteArticle._id
-        }).then(data = () => {
+        }).then(function(data) {
             if (data.ok) {
                 initPage();
             }
         });
     }
 
-    controllerArticleNotes = () => {
+    function controllerArticleNotes() {
         /*This function can handle opening our query of notes and displaying them in the DOM.*/
         const presentArticle = $(this).parents("#card").data();
         /*We use a "get" method to grab any notes associated with the headline/article id*/
-        $.get("/api/notes/" + presentArticle._id).then(data = () => {
+        $.get("/api/notes/" + presentArticle._id).then(function(data) {
             const noteModelText = [
                 "<div class='row fluid-container'>",
                 "<div class='text-center'>",
@@ -164,10 +164,10 @@ $(document).ready(function() {
         });
     }
 
-    controllerNoteSave = () => {
+    function controllerNoteSave() {
         /*We then define the function to save the user note created in the DOM while the article gets saved.
         We then set a constant to so our script can save the data*/
-        const noteData;
+        let noteData;
         const newNote = $(".bootbox-body textarea").val().trim();
         /*We use a post method like deined in our routes to post new note information the user has typed in the DOM and then send it to our notes in our notes database/model*/
 
@@ -183,7 +183,7 @@ $(document).ready(function() {
         }
     }
 
-    controllerNoteDelete = () => {
+    function controllerNoteDelete() {
         /*We then define the function to delete the user note that is associated while the article saved.
         We then set a constant to so our script can delete the data*/
         const deleteNote = $(this).data("_id");

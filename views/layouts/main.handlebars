@@ -1,34 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <title>Granpas Read-N-Scraper</title>
+<head>
+    <title>Granpas Read-N-Scraper</title>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
 
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <!--Our "links" Begin here-->
+    <!--Favicon-->
+    <link rel="shortcut icon" type="image/png" href="../images/Notepal.png" />
 
-        <meta http-equiv="Content-Security-Policy"
-            content="default-src 'self'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self'">
+    <!--Materialize Compiled and minified CSS Link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-        <!--Let browser know website is optimized for mobile-->
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--Reset CSS-->
+    <link rel="stylesheet" href="../../assets/css/reset.css">
 
-        <link rel="shortcut icon" type="image/png" href="../images/Notepal.png" />
+    <!-- Our css -->
+    <link rel="stylesheet" href="../../assets/css/style.css">
+</head>
 
-        <!--Materialize Compiled and minified CSS Link-->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<body>
+    <!--Header Section-->
+    <div class="row header" id="header">
+        <div class="col s6">
+            <nav>
+                <div class="nav-wrapper black-text">
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                        <li><a href="/">Refresh</a></li>
+                        <li><a href="/saved">Saved Articles</a></li>
+                        <li><a href="#!">About</a></li>
 
-        <!--Reset CSS-->
-        <link rel="stylesheet" href="../css/style.css">
+                    </ul>
+                </div>
+            </nav>
+        </div>
 
-        <!-- Our css -->
-        <link rel="stylesheet" href="../css/reset.css">
-    </head>
+        <div class="col s6">
+            <nav>
+                <div class="nav-wrapper black-text">
+                    <a href="/landing-page" class="brand-logo">Logo Goes here</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!--Header Section-->
+    
+    {{{ body }}}
 
-    <body>
-        {{{ body }}}
-    </body>
+</body>
 
 </html>
