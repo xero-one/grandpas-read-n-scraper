@@ -26,14 +26,7 @@ let scrapeData = callback => {
             result.summary = $(element).find("p").text().trim();
 
             if (result.headline !== "" && result.summary !== "") {
-                let headingPrettify = result.headline.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-                let summaryPrettify = result.summary.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
-
-                /*Take the fetched data parse it into an object so it can be stored into our db models*/
-                let fetchedData = {
-                    headline: headingPrettify,
-                    summary: summaryPrettify
-                };
+              
                 headlineJS.findOne({ headline: result.headline }, function (err, data) {
                     if (err) {
                         console.log(err)
@@ -49,7 +42,6 @@ let scrapeData = callback => {
                         console.log(data)
                     }
                 });
-                result.push(fetchedData);
             }
 
             callback(result);

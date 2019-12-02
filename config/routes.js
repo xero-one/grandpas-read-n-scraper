@@ -10,12 +10,12 @@ const notesControllerJS = require("../controllers/notesController");
 module.exports = router => {
     /*Set the router to get or render the home webpage components of our website to route to the default path "/"*/
     router.get("/", (req, res) => {
-        res.render("home");
+        res.render("home", { home: true, article : data });
     });
 
     /*Set the router to get or render the saved webpage components of our website to route to path "/" + "saved"*/
     router.get("/saved", (req, res) => {
-        res.render("saved");
+        res.render("saved", { home: false, article : data });
     });
 
     /*API routing for middleware to render all api data fetched from our code*/
@@ -91,5 +91,18 @@ module.exports = router => {
             res.json(data);
         });
     });
-    
+
+
+    /*clear all articles from database*/
+    router.get("/api/clear", function(req, res){
+        console.log(req.body);
+        headlineJS.deleteMany({}, function(err, result){
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(result);
+            res.send(true);
+        }
+        })
+  });
 }
