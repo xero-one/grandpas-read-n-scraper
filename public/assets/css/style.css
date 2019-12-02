@@ -8,9 +8,20 @@ body {
   background-image: url("../images/.png");
 }
 
+@font-face {
+  font-family: "BentonSans";
+  src: url("../fonts/BentonSans\ Comp\ Black\ Regular.otf") format("truetype");
+}
+
 /*Header Section==============================================================*/
 .navbar {
   margin-bottom: 0;
+}
+
+.navbar-brand {
+  padding-top: 15px;
+  font-family: "BentonSans";
+  font-size: 25px;
 }
 
 .navbar-nav > li > a.scrape-new,
@@ -73,7 +84,7 @@ float: right;
 .jumbotron {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 550px;
   padding: 0;
   font-family: "Cormorant SC";
   box-shadow: 10px 5px 20px 2px lightslategrey;
@@ -92,8 +103,9 @@ float: right;
 
 .jumbotron .background-image {
   height: 100%;
-  background-image: url("../images/newspaper.jpg");
-  background-size: cover;
+  background-image: url("../img/sr-major-logo.png");
+  background-size: 60%;
+  background-position: center top;
 }
 
 .jumbotron .caption {
@@ -104,13 +116,23 @@ float: right;
 }
 
 .jumbotron .caption h1,
+.jumbotron .caption h2,
 .jumbotron .caption p {
   color: white;
 }
 
 .jumbotron h1 {
-  font-size: 85px;
+  margin-bottom : -25px;
+  font-size: 100px;
   font-weight: 800;
+  font-family: "BentonSans";
+}
+
+.jumbotron h2 {
+  font-size: 65px;
+  font-weight: 800;
+  margin-bottom : 55px;
+  font-family: "BentonSans";
 }
 
 .jumbotron p {
@@ -123,7 +145,7 @@ float: right;
 
 /*Card section (start)=======================================================*/
 .article-container {
-  padding-bottom: 25px;
+  padding-bottom: 45px;
 }
 
 .card a:not([href]):not([tabindex]).scrape-new {
@@ -185,16 +207,30 @@ textarea {
 /*Card section (end)=========================================================*/
 
 /*Footer section (start)=====================================================*/
-.footer > .container > p {
+footer {
+  height: 8.5vh;
   position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 5px;
+  padding-top: 0px;
   padding-bottom: 5px;
   padding-left: 10px;
   margin: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   font-weight: 800;
   background: goldenrod;
+}
+
+.footer-title {
+  text-align: center;
+  font-family: "BentonSans";
+  font-size: 25px;
+  padding-top: 24px;
+  padding-bottom: -50px;
+}
+
+.dev-name {
+  text-align: center;
+  font-size: 17px;
 }
 /*Footer section (end)=======================================================*/

@@ -43,7 +43,7 @@ $(document).ready(function () {
                 $("<a class='article-link' target='_blank' rel='noopener noreferrer'>")
                     .attr("href", article.url)
                     .text(article.headline),
-                $("<a class='btn btn-success save' id='save-btn'>Save Article</a>")
+                $("<a class='btn btn-dark save' id='save-btn'>Save Article</a>")
             )
         );
 
@@ -88,7 +88,7 @@ $(document).ready(function () {
         console.log(saveArticle)
         /*We then use the ajax "PATCH" method to update the data with what is in the process of being saved*/
         $.ajax({
-            method: "PATCH",
+            method: "PUT",
             url: "/api/headlines/" + saveArticle._id,
             data: saveArticle
         })
