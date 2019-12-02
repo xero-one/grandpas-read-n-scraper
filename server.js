@@ -28,8 +28,8 @@ const PORT = process.env.PORT || 3000;
 mongoose.Promise = Promise;
 
 /*Call mongoose to connect to the server and run log command status*/
-const db = process.env.MONGODB_URI || "mongodb://grandpas-read-n-scraper:count123456@ds137498.mlab.com:37498/heroku_5dj9607r";
-mongoose.connect(db, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, err => {
+const mongoDB = process.env.MONGODB_URI || "mongodb://grandpas-read-n-scraper:count123456@ds137498.mlab.com:37498/heroku_5dj9607r";
+mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, err => {
         if (err) {
             console.log(err);
         }
