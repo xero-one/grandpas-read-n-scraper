@@ -12,11 +12,15 @@ var bodyParser = require("body-parser");
 /*Set constant variable for npm mongoose db*/
 const mongoose = require("mongoose");
 
+const path = require("path");
+
 /*Set constant to call the function npm express to initialize*/
 const app = express();
 
 /*Set constant variable to set npm express router protocal*/
 const router = express.Router();
+
+const publicPath = path.join(__dirname, "/public");
 
 /*Set a constant variable for your port or app port*/
 const PORT = process.env.PORT || 3000;
@@ -52,23 +56,25 @@ app.use(bodyParser.urlencoded({
   }));
 
 /*Call the app to label the public folder as static*/
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(publicPath));
+
+/*Call the app to use router middleware for every request*/
+app.use(router);
+
+/*Handlebars*/
+app.set("views", "./views");
 
 /*Set the app to connect handlebars with express*/
 app.engine("handlebars", exphbs({
-    defaultLayout: + "main"
+    defaultLayout: "main"
   }));
- 
-/*Call the app to use router middleware for every request*/
-app.use(router);
 
 /*Set the app to use han*/
 app.set("view engine", "handlebars");
 
 
-
 /*Set the app to listen to PORT set above*/
-app.listen(PORT, function() {
+app.listen(PORT, () => {
     console.log("The app is listening om port: " + PORT);
 });
 

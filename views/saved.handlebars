@@ -1,38 +1,64 @@
 <!--Main Container-->
 <!--Main Banner Section--->
-<div class="row">
-    <div class="col s12 main-banner" id="banner-image">
-        <h1>Granpas Read-N-Scraper</h1>
-        <h2>Your Saved Articles</h2>
-
-        <div class="main-logo">
-
-        </div>
+<div class="jumbotron text-center">
+    <div class="overlay">
+    </div>
+    <div class="background-image">
+    </div>
+    <div class="caption">
+        {{#if home}}
+        <h1>Grandpas-Read-N-Scrape</h1>
+        <p>New York Times Edition</p>
+        {{else}}
+        <h1>Saved Articles</h1>
+        <p>Your Saved Articles</p>
+        {{/if}}
     </div>
 </div>
 <!--Main Banner Section-->
 
 
 <!--Article dump Section-->
-<div class="row">
-    <div class="col s12 article-container" id="article-section">
-
+<div class="container-fluid article-container" id="article-div">
+    {{#if article}}
+    {{#each article}}
+    <div data-_id={{this._id}} class="card" id="card">
+        <div class="card-header">
+            <h3>
+                <a class="article-link" target="_blank" rel="noopener noreferrer"
+                    href={{this.url}}>{{this.headline}}</a>
+                <a class="btn btn-danger delete" id="delete-btn">Delete From Saved</a>
+                <a class="btn btn-info notes" id="notes-btn">Article Notes</a>
+            </h3>
+        </div>
+        <div class="card-body" id="card-body">{{this.summary}}</div>
+    </div>
+    {{/each}}
+</div>
+{{else}}
+<div class='alert alert-warning text-center'>
+    <h4>Uh Oh. Looks like we don't have any new articles.</h4>
+</div>
+<div class="card">
+    <div class="card-header text-center">
+        <h3>What Would You Like To Do?</h3>
+    </div>
+    <div class="card-body text-center">
+        <h4>
+            <a class="scrape-new" id="scrape-new">Try Scraping New Articles</a>
+        </h4>
+        <h4>
+            <a href="/saved">Go to Saved Articles</a>
+        </h4>
     </div>
 </div>
+{{/if}}
 <!--Article dump Section-->
 
 
 <!--Footer Section-->
-<div class="row">
-    <div class="col s12 sub-footer">
-
-    </div>
-    <div class="col s12 footer">
-
-    </div>
-</div>
+{{> footer }}
 <!--Footer Section-->
-</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>

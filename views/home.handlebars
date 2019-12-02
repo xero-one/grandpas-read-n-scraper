@@ -1,52 +1,64 @@
+<!--Header Section-->
+{{> header }}
+<!--Header Section-->
+
 <!--Main Container-->
-
-<!--Main Banner Section--->
-<div class="row">
-    <div class="col s12 main-banner" id="banner-image">
-        <h1>Granpas Read-N-Scraper</h1>
-        <p>New York Times Edition</p>
-
-        <div class="main-logo" id="logo">
-
-        </div>
-    </div>
+<!--Main Banner Section-->
+<div class="jumbotron text-center">
+  <div class="overlay">
+  </div>
+  <div class="background-image">
+  </div>
+  <div class="caption">
+    {{#if home}}
+    <h1>Grandpas-Read-N-Scrape</h1>
+    <p>New York Times Edition</p>
+    {{else}}
+    <h1>Saved Articles</h1>
+    <p>Your Saved Articles</p>
+    {{/if}}
+  </div>
 </div>
 <!--Main Banner Section-->
 
-
-<!--Controller buttons Section-->
-<div class="row">
-    <div class="col s12 controller-buttons-main">
-        <button class="controller-button" id="scrape-new">
-            SCRAPE NEW ARTICLES
-        </button>
-
-        <button class="controller-button" id="clear">
-            CLEAR ARTICLES
-        </button>
-    </div>
-</div>
-<!--Controller buttons Section-->
-
-
 <!--Article dump Section-->
-<div class="row">
-    <div class="col s12 article-container" id="article-div">
-
+<div class="container-fluid article-container">
+{{#if article}}
+  {{#each article}}
+  <div data-_id={{this._id}} class="card">
+    <div class="card-header" id="card-header">
+      <h3>
+        <a class="article-link" target="_blank" rel="noopener noreferrer" href={{this.url}}>{{this.headline}}</a>
+        <a class="btn btn-success save" id="save-btn">Save Article</a>
+      </h3>
     </div>
+    <div class="card-body" id="card-body">{{this.summary}}</div>
+  </div>
+  {{/each}}
 </div>
+{{else}}
+  <div class='alert alert-warning text-center'>
+    <h4>Uh Oh. Looks like we don't have any new articles.</h4>
+  </div>
+  <div class="card">
+    <div class="card-header text-center">
+      <h3>What Would You Like To Do?</h3>
+    </div>
+    <div class="card-body text-center">
+      <h4>
+        <a class="scrape-new" id="scrape-new">Try Scraping New Articles</a>
+      </h4>
+      <h4>
+        <a href="/saved">Go to Saved Articles</a>
+      </h4>
+    </div>
+  </div>
+{{/if}}
 <!--Article dump Section-->
 
 
 <!--Footer Section-->
-<div class="row">
-    <div class="col s12 sub-footer">
-
-    </div>
-    <div class="col s12 footer">
-
-    </div>
-</div>
+{{> footer }}
 <!--Footer Section-->
 
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
