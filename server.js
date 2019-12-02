@@ -7,7 +7,7 @@ const express = require("express");
 const exphbs = require("express-handlebars")
 
 /*Set constant variable for body-parser*/
-var bodyParser = require("body-parser");
+const bodyParser = require("body-parser");
 
 /*Set constant variable for npm mongoose db*/
 const mongoose = require("mongoose");
@@ -19,6 +19,8 @@ const app = express();
 
 /*Set constant variable to set npm express router protocal*/
 const router = express.Router();
+
+const logger = require("morgan");
 
 const publicPath = path.join(__dirname, "/public");
 
@@ -41,6 +43,8 @@ mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true, use
 /*Require our routes.js file to pass our router object containing our routes info*/
 require("./config/routes")(router);
 
+// Use morgan logger for logging requests
+app.use(logger("dev"));
 /*End of our constant defines and require calls=================================================*/
 
 
@@ -57,6 +61,11 @@ app.use(bodyParser.urlencoded({
 
 /*Call the app to label the public folder as static*/
 app.use(express.static(publicPath));
+
+/*Parse request body as JSON*/
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json());
 
 /*Call the app to use router middleware for every request*/
 app.use(router);
