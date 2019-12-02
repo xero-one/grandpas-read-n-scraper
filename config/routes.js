@@ -68,7 +68,7 @@ module.exports = router => {
 
     /*Set a router to update all the headline articles*/
     router.put("/api/headlines/:id", function (req, res) {
-        let saved = req.body.saved == 'true'
+        const saved = req.body.saved == 'true'
         if (saved) {
             db.headlineJS.updateOne({ _id: req.body._id }, { $set: { saved: true } }, function (err, result) {
                 if (err) {

@@ -9,9 +9,6 @@ $(document).ready(function () {
     $(document).on("click", "#delete-note-btn", controllerNoteDelete);
     $("#clear").on("click", controllerArticleClear);
 
-    /*Life style-function that initializes the page*/
-    initPage();
-
     function initPage() {
         /*Empty the article div once a new ajax function is calle to get new articles*/
         articleContainer.empty();
@@ -194,8 +191,7 @@ $(document).ready(function () {
         $.get("api/clear")
           .then(function(data) {
             articleContainer.empty();
-            // initPage();
-            location.reload();
+            initPage() || location.reload();
           });
       }
 

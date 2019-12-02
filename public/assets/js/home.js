@@ -5,15 +5,12 @@ $(document).ready(function () {
     $(document).on("click", "#scrape-new", controllerScrapeArticle);
     $("#clear").on("click", controllerArticleClear);
 
-    /*Life style-function that initializes the page*/
-    initPage();
-
     function initPage() {
         /*Empty the article div once a new ajax function is called to get new articles*/
-        articleContainer.empty();
+        
         $.get("/api/headlines?saved=false")
-            .then(function (data) {
-
+            .then(function(data) {
+                articleContainer.empty();
                 /*Set a boolean if statement that pulls headlines if there are any*/
                 if (data && data.length) {
                     renderArticles(data);
