@@ -26,14 +26,14 @@
 <div class="container-fluid article-container" id="article-div">
 {{#if article}}
   {{#each article}}
-  <div data-_id={{this._id}} class="card">
+  <div data-_id={{this._id}} class="card" id="card">
     <div class="card-header" id="card-header">
       <h3>
         <a class="article-link" target="_blank" rel="noopener noreferrer" href={{this.url}}>{{this.headline}}</a>
-        <a class="btn btn-success save" id="save-btn">Save Article</a>
+        <a class="btn btn-dark save" id="save-btn">Save Article</a>
       </h3>
     </div>
-    <div class="card-body" id="card-body">{{this.summary}}</div>
+    <div class="card-body" id="card-body">{{this.summary}}{{this.date}}</div>
   </div>
   {{/each}}
 </div>

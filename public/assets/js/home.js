@@ -47,7 +47,8 @@ $(document).ready(function () {
             )
         );
 
-        const cardBody = $("<div class='card-body' id='card-body'>").text(article.summary);
+        const cardBody = $("<div class='card-body' id='card-body'>").text(article.summary)
+        .text(article.date)
         card.append(cardHeader, cardBody);
 
         /*Connect the article "_id" with the JQUERY script, this allows the script to keep track of wich article gets saved if a user want to save an article*/
@@ -64,7 +65,7 @@ $(document).ready(function () {
                 "<div class='alert alert-warning text-center'>",
                 "<h4>Uh Oh. Looks like we don't have any new articles.</h4>",
                 "</div>",
-                "<div class='card'>",
+                "<div class='card' id='card'>",
                 "<div class='card-header text-center'>",
                 "<h3>What Would You Like To Do?</h3>",
                 "</div>",

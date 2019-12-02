@@ -19,11 +19,11 @@ const headlineSchema = new Schema({
           type: String,
           required: true
       },
-      date: String,
       saved: {
           type: Boolean,
           default: false
-      }   
+      },   
+      date: String
 });
 
 /*Save the built schema to a parent varaible that also ties the file its associated with and sets the "model" attribute to do work*/

@@ -39,7 +39,7 @@ $(document).ready(function () {
 
     function constructCard(article) {
         /*Here we write out our direct article card html code dynamically with JQUERY to formatt our data to append to our page with nice HTML/CSS*/
-        const card = $("<div class='card'>");
+        const card = $("<div class='card' id='card'>");
         const cardHeader = $("<div class='card-header'>").append(
             $("<h3>").append(
                 $("<a class='article-link' target='_blank' rel='noopener noreferrer'>")
@@ -50,8 +50,9 @@ $(document).ready(function () {
             )
         );
 
-        const cardBody = $("<div class='card-body'>").text(article.summary);
-
+        const cardBody = $("<div class='card-body'>").text
+        (article.summary)
+        .text(article.date)
         card.append(cardHeader, cardBody);
 
         /*Connect the article "_id" with the JQUERY script, this allows the script to keep track of wich article gets saved if a user want to save an article*/
@@ -68,7 +69,7 @@ $(document).ready(function () {
                     "<div class='alert alert-warning text-center'>",
                     "<h4>Looks like there are no saved articles.</h3>",
                     "</div>",
-                    "<div class='card'>",
+                    "<div class='card' id='card'>",
                     "<div class='card-header text-center'>",
                     "<h3 class='heading'>Would You Like to Browse Any Available Articles</h3>",
                     "</div>",
