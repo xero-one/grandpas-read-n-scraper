@@ -68,16 +68,15 @@ $(document).ready(function () {
         const emptyAlert =
             $(
                 [
-                    "<div class='row alert'>",
-                    "<div class='col s12 text-center'>",
+                    "<div class='alert alert-warning text-center'>",
                     "<h4>Looks like there are no saved articles.</h3>",
                     "</div>",
-                    "<div class='col s12 card text-centered'>",
+                    "<div class='card'>",
+                    "<div class='card-header text-center'>",
                     "<h3 class='heading'>Would You Like to Browse Any Available Articles</h3>",
                     "</div>",
-                    "<div class='col s12 text-centered'>",
-                    "<h4><a class='scrape-new' id='scrape-new'>Scrape New Articles to Read</a></h4>",
-                    "<h4><a href='/'>Search Articles</a></h4>",
+                    "<div class='card-body text-center'>",
+                    "<h4><a href='/'>Search Articles to read</a></h4>",
                     "</div>",
                     "</div>"
                 ].join(""));
