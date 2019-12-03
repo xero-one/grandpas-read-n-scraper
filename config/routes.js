@@ -68,9 +68,9 @@ module.exports = router => {
 
     /*Set a router to update all the headline articles*/
     router.put("/api/headlines/:id", function (req, res) {
-        const saved = req.body.saved == 'true'
+        const saved = req.body.saved == "true"
         if (saved) {
-            db.headlineJS.updateOne({ _id: req.body._id }, { $set: { saved: true } }, function (err, result) {
+            db.headlineJS.updateOne({ _id: req.body._id }, { $set: { saved: true } }, function (err, res) {
                 if (err) {
                     console.log(err)
                 } else {
@@ -84,7 +84,7 @@ module.exports = router => {
     /*Set routing for our delete function from our controller*/
     router.delete("/api/headlines/:id", function (req, res) {
         console.log('reqbody:' + JSON.stringify(req.params.id))
-        db.headlineJS.deleteOne({ _id: req.params.id }, function (err, result) {
+        db.headlineJS.deleteOne({ _id: req.params.id }, function (err, res) {
             if (err) {
                 console.log(err)
             } else {
@@ -101,7 +101,7 @@ module.exports = router => {
                 console.log(dbArticle.note)
                 res.json(dbArticle.note)
             })
-            .catch(function (err) {
+            .catch(function(err) {
                 res.json(err)
             })
     });
@@ -124,8 +124,8 @@ module.exports = router => {
         console.log(req.body)
         db.noteJS.create({ noteText: req.body.noteText })
         .then(function(dbNote){
-          console.log('dbNote:' + dbNote)
-          return db.noteJS.findOneAndUpdate({ _id:req.body._headlineId}, 
+          console.log("dbNote: " + dbNote)
+          return db.headlineJS.findOneAndUpdate({ _id:req.body._headlineId}, 
           { $push: {note: dbNote._id} }, 
           {new: true})
         })

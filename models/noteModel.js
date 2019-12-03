@@ -6,10 +6,6 @@ const Schema = mongoose.Schema;
 
 /*Build the schema full of objects and properties and saving it to a hard variable*/
 const noteSchema = new Schema({
-      _headlineID: {
-          type: Schema.Types.ObjectID,
-          ref: "headlineModel",
-      },
       noteText: String,
       date: String,
 });

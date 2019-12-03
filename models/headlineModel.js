@@ -9,7 +9,6 @@ const headlineSchema = new Schema({
       headline: {
           type: String,
           required: true,
-          unique: true
       },
       url: {
         type: String,
@@ -22,8 +21,12 @@ const headlineSchema = new Schema({
       saved: {
           type: Boolean,
           default: false
-      },   
-      date: String
+      },
+      note: [{
+        type: Schema.Types.ObjectId,
+        ref: "noteJS"
+      }]   
+      
 });
 
 /*Save the built schema to a parent varaible that also ties the file its associated with and sets the "model" attribute to do work*/
