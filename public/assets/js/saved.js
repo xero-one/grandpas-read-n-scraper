@@ -125,12 +125,12 @@ $(document).ready(function () {
         });
     }
 
-    function controllerArticleNotes() {
+    function controllerArticleNotes(event) {
         /*This function can handle opening our query of notes and displaying them in the DOM.*/
         const presentArticle = $(this).parents("#card").data();
         console.log(presentArticle);
         /*We use a "get" method to grab any notes associated with the headline/article id*/
-        $.get("/api/notes/" + presentArticle._id).then(function (data) {
+        $.get("/api/notes/" + presentArticle._id).then(function(data) {
             console.log(data);
             const noteModelText = $("<div class='container-fluid text-center'>").append(
                 $("<h4>").text("Notes For Article: " + presentArticle._id),
@@ -139,6 +139,7 @@ $(document).ready(function () {
                 $("<textarea placeholder='New Note' rows='4' cols='60'>"),
                 $("<button class='btn btn-success save' id='save-btn'>Save Note</button>")
             );
+            console.log(noteModelText);
             /*We now add our html components to the notes script*/
             bootbox.dialog({
                 message: noteModelText,
@@ -148,6 +149,7 @@ $(document).ready(function () {
                 _id: presentArticle._id,
                 notes: data || []
             };
+            console.log("noteData:" + JSON.stringify(noteData))
             /*We then tie together are connected notes to the relevant article and tie their ids to our powerful save button*/
             $("#save-btn").data("article", noteData);
             /*Here we set our renderNotesQuery function to populate the note HTML dynamically from the script we constructed*/
@@ -164,10 +166,9 @@ $(document).ready(function () {
 
         if (newNote) {
             noteData = {
-                _id: $(this).data("article")._id,
-                noteText: newNote
+                _id: $(this).data("article")._id, noteText: newNote
             };
-            $.post("/api/notes", noteData).then(function () {
+            $.post("/api/notes", noteData).then(function() {
                 /*Once everything has loaded this line lets use collapse the model*/
                 bootbox.hideAll();
             })

@@ -94,7 +94,7 @@ module.exports = router => {
     });
 
     /*Set a routing function to Grab all notes/comments associated with each user for our articles*/
-    router.get("/api/notes/:id", function (req, res) {
+    router.get("/api/notes/:id", function(req, res) {
         db.headlineJS.findOne({ _id: req.params.id })
             .populate("note")
             .then(function (dbArticle) {
@@ -139,7 +139,7 @@ module.exports = router => {
       });
 
     /*clear all articles from database*/
-    router.get("/api/clear", function (req, res) {
+    router.get("/api/clear", function(req, res) {
         console.log(req.body);
         db.headlineJS.deleteMany({}, function (err, result) {
             if (err) {

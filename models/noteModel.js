@@ -10,9 +10,8 @@ const noteSchema = new Schema({
           type: Schema.Types.ObjectID,
           ref: "headlineModel",
       },
-      
+      noteText: String,
       date: String,
-      noteText: String
 });
 
 /*Save the built schema to a parent varaible that also ties the file its associated with and sets the "model" attribute to do work*/
