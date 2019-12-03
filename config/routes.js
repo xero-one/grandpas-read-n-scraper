@@ -4,6 +4,7 @@ const axios = require('axios');
 /*Set a constant variable for cheerio to asist in calling information from the New York times quickly*/
 const cheerio = require("cheerio");
 
+
 const db = require("../models");
 
 module.exports = router => {

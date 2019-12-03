@@ -208,7 +208,7 @@ textarea {
 
 /*Footer section (start)=====================================================*/
 footer {
-  height: 8.5vh;
+  height: auto;
   position: absolute;
   padding-top: 0px;
   padding-bottom: 5px;

@@ -10,7 +10,7 @@ const noteSchema = new Schema({
       date: String,
 });
 
-/*Save the built schema to a parent varaible that also ties the file its associated with and sets the "model" attribute to do work*/
+/*Save the built schema to a parent varaible that also ties the file its associated with and sets the "model" attribute*/
 const noteJS = mongoose.model("noteModel", noteSchema);
 
 /*Export the parent variable we just set, so it is available throughout the app and so it can be used for routing*/
