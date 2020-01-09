@@ -1,11 +1,14 @@
 <h1 align="center">Grandpas Read-N-Scraper</h1>
 <br>
-<h3>
-Welcome fellow coders and viewers! Welcome to Grandpas Read-N-Scraper. Browsing news-websites can be annoying, 
+<h2>Description</h2>
+<p>Welcome fellow coders and viewers! Welcome to Grandpas Read-N-Scraper. Browsing news-websites can be annoying, 
 everything takes long to find QUALITY articles, and every news website seems to be a haven for onscreen 
-ads and click-bait. Not anymore! Our News app is powered by the New York Times SO YOU NEED TO HAVE A 
-<a href="https://myaccount.nytimes.com/auth/register?response_type=cookie&client_id=lgcl&redirect_uri=https%3A%2F%2Fwww.nytimes.com">
-    NEW YORK TIMES ACCOUNT</a> to read the artcles. Once you have a NYT account or if you already have one you can go 
+ads and click-bait. Not anymore! Hence our News app!
+</p>
+<br>
+<h2>Instructions</h2>
+This app is powered by the New York Times SO YOU NEED TO HAVE A 
+<a href="https://myaccount.nytimes.com/auth/register?response_type=cookie&client_id=lgcl&redirect_uri=https%3A%2F%2Fwww.nytimes.com">NEW YORK TIMES ACCOUNT</a> to read the artcles. Once you have a NYT account or if you already have one you can go 
 straight to browsing the news. When you open the app you can choose between two options:
 <ul>
 <li>"Scrape New Articles" - to randomly fetch articles from New York Times and links you to the article you slect from 
